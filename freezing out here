@@ -1,0 +1,22 @@
+    local UserInputService = game:GetService("UserInputService")
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    
+    local dog = false
+    
+    local function toggleDog()
+        dog = not dog
+        if dog then
+            print("Freeze Spammer is enabled")
+            while dog do
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Freeze"):FireServer()
+                wait()
+            end
+        else
+            print("Freeze Spammer  is disabled")
+        end
+    end
+    
+    UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if not gameProcessed and input.KeyCode == Enum.KeyCode.B then
+            toggleDog()
+    
